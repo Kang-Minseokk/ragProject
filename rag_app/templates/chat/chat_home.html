@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <title>Chat Home</title>
 </head>
+<style>
+
+</style>
 <body>
+    {% for message in chat_history %}
+        <p><strong>{{ message.role.capitalize() }}: </strong>{{ message.content }}</p>
+    {% endfor %}
     <form method="post">
-        <input id="user_input" type="text" placeholder="내용을 입력해주세요.">
+        <input type="text" name="user_msg" id="user_msg" value="{{ form.user_msg.data or '' }}"
+               placeholder="내용을 입력해주세요.">
         <input type="submit" value="send">
     </form>
 </body>

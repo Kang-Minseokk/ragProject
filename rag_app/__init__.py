@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from dotenv import load_dotenv
 import os
 
+import config
 
 load_dotenv()
 host = os.getenv('FLASK_RUN_HOST')
@@ -10,7 +11,7 @@ port = os.getenv('FLASK_RUN_PORT')
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_prefixed_env()
+    app.config.from_object(config.Config)
 
     @app.route('/')
     def home():
